@@ -15,8 +15,8 @@ import ot.plot
 import random
 
 def main(exampleTable: object, industryList: object):
-    df1=pd.read_csv(exampleTable)
-    df4=pd.read_csv(industryList)
+    df1=pd.read_json(exampleTable, orient="records")
+    df4=pd.read_json(industryList, orient="records")
     np.set_printoptions(suppress=True)
     lng=df1['lng']
     lng=np.float32(lng)
@@ -97,6 +97,6 @@ def main(exampleTable: object, industryList: object):
     csq_result=pd.DataFrame(csq_result)
 
     csq_result.columns=['ind_i','ind_j','co-agg index','W Distance','ni','nj']
-    return csq_result.copy()
+    return csq_result.to_json(orient="records")
 
-print(main("./example.csv", "./industry+list.csv"))
+#print(main("./example.json", "./industry+list.json"))
